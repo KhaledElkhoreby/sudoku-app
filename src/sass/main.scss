@@ -1,0 +1,145 @@
+@use '../../node_modules/bootstrap/scss/bootstrap.scss' as *;
+@use './varaibles' as *;
+
+
+
+body {
+  background-color: $maize-crayola;
+}
+
+//#region userData
+#userData {
+  display: flex;
+}
+
+//#endregion
+
+//#region gallary container
+#gallaryContainer {
+  $colectionLength: 470px;
+  $colectionBorder: 4px;
+  $gap: 1rem;
+  row-gap: $gap;
+  column-gap: $gap;
+  $border-raduis: 1em;
+  border-radius: $border-raduis;
+
+  #colection {
+    width: $colectionLength;
+    height: $colectionLength;
+    border: $colectionBorder solid transparent;
+    position: relative;
+    transition: all ease 0.3s;
+
+    &:hover {
+      box-shadow: 0px 8px 12px 2px rgb(0 0 0 / 32%);
+      border: $colectionBorder solid $orange-red;
+      transform: scale(1.009);
+
+      img {
+        filter: brightness(100%);
+      }
+    }
+
+    &>div {
+      width: calc(($colectionLength - 2 * $colectionBorder ) / 2);
+      border: 2px solid $jungle-green;
+
+      img {
+        filter: brightness(50%);
+        transition: all ease-in-out 0.3s;
+      }
+    }
+
+    button {
+      z-index: 10;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+//#endregion
+
+//#region game
+@mixin img-container($countInRow, $boardLength, $borderWidth) {
+  div.img-#{$countInRow}-#{$countInRow} {
+    width: calc(($boardLength - $borderWidth * 2) / $countInRow);
+    height: calc(($boardLength - $borderWidth * 2) / $countInRow);
+    outline: none;
+    background-color: aquamarine;
+    border: 3px solid $imaga-border-color;
+    transition: all ease 0.2s, filter ease-in-out 0.3s;
+
+    &:focus {
+      box-shadow: 0 0 20px 20px rgb(0 0 0 / 38%) inset;
+
+      img {
+        filter: brightness(70%);
+      }
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      padding: 0.2em;
+      transition: filter ease 0.5s;
+    }
+  }
+
+  div.wrong {
+    border: 3px solid red;
+    filter: grayscale(100%) brightness(60%) sepia(100%) hue-rotate(-50deg) saturate(600%) contrast(1.5);
+  }
+
+  div.correct {
+    border: 3px solid rgb(0, 100, 0);
+    filter: grayscale(0%) brightness(60%) sepia(1) hue-rotate(45deg) saturate(700%) contrast(1.5);
+  }
+}
+
+
+#gameContainer {
+  $boardLength: calc(100vh - 320px);
+  $borderWidth: 4px;
+  padding: 4rem 0;
+
+  #choices {
+    margin: auto;
+    width: $boardLength;
+    border: $borderWidth solid $orange-red;
+    box-shadow: 0px 3px 14px 4px rgba(0, 0, 0, 0.415);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    @include img-container(4, $boardLength, $borderWidth);
+    @include img-container(9, $boardLength, $borderWidth);
+  }
+
+  #board {
+    margin: auto;
+    margin-top: 5rem;
+    width: $boardLength;
+    height: $boardLength;
+    border: $borderWidth solid $orange-red;
+    box-shadow: 0px 3px 14px 4px rgba(0, 0, 0, 0.415);
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    @include img-container(4, $boardLength, $borderWidth);
+    @include img-container(9, $boardLength, $borderWidth);
+  }
+}
+
+//#endregion

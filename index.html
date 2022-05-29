@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite App</title>
+  <link rel="stylesheet" href="./src/sass/main.scss">
+</head>
+
+<body>
+  <!--#region Modal Form-->
+  <section class="modal fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Welcome</h5>
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal"></button> -->
+        </div>
+        <div class="modal-body">
+          <form class="needs-validation" novalidate>
+            <div class="mb-3">
+              <label for="userName" class="form-label">Name</label>
+              <input type="text" class="form-control" id="userNameInput" placeholder="Enter Your Name" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="level" class="form-label">Game Level</label>
+              <select id="levelInput" class="form-select" required>
+                <option selected disabled value="">Choose...</option>
+                <option value="easy">Easy</option>
+                <option value="hard">Hard</option>
+              </select>
+              <div class="invalid-feedback">
+                Please select level.
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary mb-3 d-block mx-auto px-3 py-2">Let's Play</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!--#endregion Modal Form-->
+  <!--#region Message Container-->
+  <section id="messageContainer" class="container-fluid bg-info d-none shadow-lg ">
+    <div id="userData" class="row row-cols-3 d-flex justify-content-evenly py-2 gy-2 px-0 gx-0">
+      <span id="welcomeMessage" class="d-inline-block btn btn-danger p-2"></span>
+      <span id="yourLevelMessage" class="d-inline-block btn btn-success p-2"></span>
+      <span id="timer" class="d-inline-block btn btn-light p-2"></span>
+      <button id="startTimerBtn" type="button" class="btn btn-primary d-block align-self-center w-25">Start</button>
+    </div>
+
+    <!-- Game Message WIN  -->
+    <div class="modal fade" id="gameMessageWin" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center h3">
+          </div>
+          <div class="modal-footer text-center">
+            <button type="button" class="btn btn-primary d-block mx-auto" data-bs-dismiss="modal"
+              aria-label="Close">Ok</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Game Message LOSE -->
+    <div class="modal fade" id="gameMessageLose" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center h3">
+          </div>
+          <div class="modal-footer text-center">
+            <button id="restartBtn" type="button" class="btn btn-primary d-block mx-auto"
+              data-bs-dismiss="modal">Restart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--#endregion Message Container-->
+  <!--#region Gallary -->
+  <section id="gallaryContainer"
+    class="container p-0 py-3 d-flex flex-wrap justify-content-center align-content-center d-none">
+
+  </section>
+  <!--#endregion Gallary-->
+  <!-- #region Game Container -->
+  <section id="gameContainer" class="container p-0 py-3 d-none">
+    <div id="choices" class="mb-2">
+    </div>
+    <div id="board">
+    </div>
+  </section>
+  <!-- #endregion Game Container -->
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+  <script type="module" src="/src/ts/main.ts"></script>
+</body>
+
+</html>
