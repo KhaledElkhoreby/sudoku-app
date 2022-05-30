@@ -136,7 +136,10 @@ window.addEventListener('load', () => {
   );
 
   // Todo Start Timer event handler
-  startTimerBtn.addEventListener('click', startOrRestart);
+  startTimerBtn.addEventListener('click', async function () {
+    this.innerText = 'Restart';
+    await startOrRestart();
+  });
 
   // Todo Restart Game event handler
   restartBtn.addEventListener('click', startOrRestart);
@@ -209,15 +212,19 @@ window.addEventListener('load', () => {
           +event.key <= countElementsInRow
         ) {
           const solutionIndex = currentActive.dataset.solutionindex;
-          if (currentActive.childElementCount == 0) {
+          const choiseImage = getSelectChoiseImage(event.key);
+          if (
+            currentActive.childElementCount == 0 ||
+            currentActive.classList.contains('wrong')
+          ) {
             if (event.key === solutionIndex) {
               --embtyCellsCount;
               currentActive.classList.remove('wrong');
               currentActive.classList.add('correct');
-              const choiseImage = getSelectChoiseImage(event.key);
               currentActive.replaceChildren(choiseImage);
             } else {
               currentActive.classList.add('wrong');
+              currentActive.replaceChildren(choiseImage);
             }
           }
         }

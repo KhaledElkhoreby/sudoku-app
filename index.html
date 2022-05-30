@@ -17,7 +17,6 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel">Welcome</h5>
-          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal"></button> -->
         </div>
         <div class="modal-body">
           <form class="needs-validation" novalidate>
@@ -48,16 +47,18 @@
   </section>
   <!--#endregion Modal Form-->
   <!--#region Message Container-->
-  <section id="messageContainer" class="container-fluid bg-info d-none shadow-lg ">
-    <div id="userData" class="row row-cols-3 d-flex justify-content-evenly py-2 gy-2 px-0 gx-0">
-      <span id="welcomeMessage" class="d-inline-block btn btn-danger p-2"></span>
-      <span id="yourLevelMessage" class="d-inline-block btn btn-success p-2"></span>
-      <span id="timer" class="d-inline-block btn btn-light p-2"></span>
-      <button id="startTimerBtn" type="button" class="btn btn-primary d-block align-self-center w-25">Start</button>
+  <section id="messageContainer" class="container-fluid bg-info d-none shadow-lg py-2 gap-3">
+    <div id="userData" class="row row-cols-3 d-flex justify-content-evenly gy-2 px-0 gx-0">
+      <span id="welcomeMessage" class=" btn btn-danger p-2"></span>
+      <span id="yourLevelMessage" class=" btn btn-success p-2"></span>
+      <span id="timer" class=" btn btn-light p-2">00m : 00s</span>
     </div>
+    <button id="startTimerBtn" type="button" class="btn btn-lg
+    btn-primary d-block align-self-center">Start</button>
 
     <!-- Game Message WIN  -->
-    <div class="modal fade" id="gameMessageWin" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="gameMessageWin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header text-center">
@@ -73,11 +74,11 @@
       </div>
     </div>
     <!-- Game Message LOSE -->
-    <div class="modal fade" id="gameMessageLose" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="gameMessageLose" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header text-center">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body text-center h3">
           </div>
@@ -97,7 +98,7 @@
   </section>
   <!--#endregion Gallary-->
   <!-- #region Game Container -->
-  <section id="gameContainer" class="container p-0 py-3 d-none">
+  <section id="gameContainer" class="px-2 py-3 d-none">
     <div id="choices" class="mb-2">
     </div>
     <div id="board">

@@ -129,7 +129,7 @@ export const startTimer = (
       finishedContainer.innerHTML = `
         GAME OVER 😔
         </br>
-        Do you want to play again?
+        Play Again
         `;
       modal.show();
     }

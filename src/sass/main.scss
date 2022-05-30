@@ -1,5 +1,6 @@
 @use '../../node_modules/bootstrap/scss/bootstrap.scss' as *;
 @use './varaibles' as *;
+@use './functions' as *;
 
 
 
@@ -8,15 +9,69 @@ body {
 }
 
 //#region userData
-#userData {
+#messageContainer {
+  min-height: 15vh;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: $ligth-blue-0;
+
+  #userData {
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+
+    span {
+      flex: 1 0 200px;
+      cursor: unset;
+      font-size: 1.25rem;
+      font-weight: 600;
+      border: none;
+      color: #000;
+      display: grid;
+      place-content: center;
+
+
+      &:first-of-type {
+        background-color: $mango-tango;
+      }
+
+      &:last-of-type {
+        background-color: $red-salsa;
+        color: white
+      }
+
+      &:nth-of-type(2) {
+        background-color: $jungle-green;
+      }
+    }
+
+    // timer
+    span:last-of-type {
+      min-height: 2.5em;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    button {
+      flex-basis: 180px;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+  }
 }
 
 //#endregion
 
 //#region gallary container
 #gallaryContainer {
-  $colectionLength: 470px;
+  $colectionLength: css-min(#{ calc(100vh - calc(15vh + 25vh)) }, #{ calc(100vw - 2 * 1rem) });
+  ;
   $colectionBorder: 4px;
   $gap: 1rem;
   row-gap: $gap;
@@ -29,7 +84,7 @@ body {
     height: $colectionLength;
     border: $colectionBorder solid transparent;
     position: relative;
-    transition: all ease 0.3s;
+    transition: all ease-in-out 0.3s;
 
     &:hover {
       box-shadow: 0px 8px 12px 2px rgb(0 0 0 / 32%);
@@ -71,67 +126,90 @@ body {
     outline: none;
     background-color: aquamarine;
     border: 3px solid $imaga-border-color;
-    transition: all ease 0.2s, filter ease-in-out 0.3s;
+    box-shadow: 0px 3px 14px 4px rgba(0, 0, 0, 0.415);
+    transition: all ease 0.3s;
+
+    @if $countInRow ==9 {
+      padding: 0.2em;
+      border-radius: 0.75em;
+    }
+
+    @else {
+      border-radius: 1em;
+      padding: 0.5em;
+    }
 
     &:focus {
-      box-shadow: 0 0 20px 20px rgb(0 0 0 / 38%) inset;
+      @if $countInRow ==9 {
+        box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.268) inset;
+      }
+
+      @else {
+
+        box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0.268) inset;
+      }
 
       img {
-        filter: brightness(70%);
+        transform: scale(1.2);
+        box-shadow: 0 0px 12px rgba(0, 0, 0, 0.511);
       }
     }
 
     &:hover {
-      transform: scale(1.1);
+
+      img {
+        transform: scale(1.2);
+        box-shadow: 0 0px 12px rgba(0, 0, 0, 0.511);
+      }
     }
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      padding: 0.2em;
-      transition: filter ease 0.5s;
+      object-position: center;
+      padding: 0;
+      transition: all ease-in-out 0.5s;
+      border-radius: 50%;
+
     }
   }
 
   div.wrong {
     border: 3px solid red;
-    filter: grayscale(100%) brightness(60%) sepia(100%) hue-rotate(-50deg) saturate(600%) contrast(1.5);
+    background-color: rgba(255, 0, 0, 0.5);
   }
 
   div.correct {
     border: 3px solid rgb(0, 100, 0);
-    filter: grayscale(0%) brightness(60%) sepia(1) hue-rotate(45deg) saturate(700%) contrast(1.5);
+    background-color: rgba(0, 255, 0, 0.5);
   }
 }
 
 
 #gameContainer {
-  $boardLength: calc(100vh - 320px);
-  $borderWidth: 4px;
+  $boardLength: css-min(#{ calc(100vh - calc(15vh + 25vh)) }, #{ calc(100vw - 2 * 1rem) });
+  $borderWidth: 0px;
   padding: 4rem 0;
 
   #choices {
     margin: auto;
     width: $boardLength;
     border: $borderWidth solid $orange-red;
-    box-shadow: 0px 3px 14px 4px rgba(0, 0, 0, 0.415);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     @include img-container(4, $boardLength, $borderWidth);
     @include img-container(9, $boardLength, $borderWidth);
+    height: fit-content !important;
   }
 
   #board {
     margin: auto;
-    margin-top: 5rem;
+    margin-top: 4rem;
     width: $boardLength;
     height: $boardLength;
-    border: $borderWidth solid $orange-red;
-    box-shadow: 0px 3px 14px 4px rgba(0, 0, 0, 0.415);
-    background-color: white;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
