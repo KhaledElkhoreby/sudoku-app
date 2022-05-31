@@ -1,5 +1,4 @@
 import { Modal } from 'bootstrap';
-
 export const makeDivsFocusable = () => {
   const divs = document.querySelectorAll('#board div');
   for (let i = 0, len = divs.length; i < len; i++) {
@@ -18,12 +17,18 @@ interface sudokuResponse {
 }
 
 // todo fetch sudoku board and solution
-const getSudoku = async (level: keyof Level): Promise<sudokuResponse> => {
-  const response = await fetch(
-    `https://sudoku-api.deta.dev/?type=${level === 'easy' ? 4 : 9}`
-  );
-  const data = (await response.json()) as sudokuResponse;
-  return data;
+const getSudoku = async (
+  level: keyof Level
+): Promise<sudokuResponse | undefined> => {
+  try {
+    const response = await fetch(
+      `https://sudoku-api.deta.dev/?type=${level === 'easy' ? 4 : 9}`
+    );
+    const data = (await response.json()) as sudokuResponse;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const generateChoices = (
@@ -80,7 +85,9 @@ export const generateImgDivs = async (
   parentElement: HTMLElement,
   collection: string = 'football'
 ) => {
-  const { board, solution } = await getSudoku(level);
+  const { board, solution } = (await getSudoku(
+    level
+  )) as unknown as sudokuResponse;
   console.log({ board });
   console.log({ solution });
   const solutionCells = solution.split('');
