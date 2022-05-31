@@ -1,4 +1,5 @@
 import { Modal } from 'bootstrap';
+import showErrorModalWithMessage from './errorHandler';
 export const makeDivsFocusable = () => {
   const divs = document.querySelectorAll('#board div');
   for (let i = 0, len = divs.length; i < len; i++) {
@@ -24,10 +25,14 @@ const getSudoku = async (
     const response = await fetch(
       `https://sudoku-api.deta.dev/?type=${level === 'easy' ? 4 : 9}`
     );
-    const data = (await response.json()) as sudokuResponse;
-    return data;
+    if (response.ok) {
+      const data = (await response.json()) as sudokuResponse;
+      return data;
+    }
+    throw new Error('Something went wrong');
   } catch (error) {
     console.log(error);
+    showErrorModalWithMessage('Something went wrong');
   }
 };
 
@@ -77,7 +82,6 @@ const imgDiv = (
             : ``
         }
     </div>`;
-  // }
 };
 
 export const generateImgDivs = async (
