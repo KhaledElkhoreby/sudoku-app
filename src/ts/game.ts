@@ -162,7 +162,7 @@ export const generateCollections = (
     }
 
     constainerElemnet.innerHTML += `
-    <div id="colection" class="d-flex flex-wrap">
+    <div id="collection" class="d-flex flex-wrap">
       <button  type="button" class="selectCollectionBtn btn btn-lg btn-primary" value="${collection}">
         Select
       </button>

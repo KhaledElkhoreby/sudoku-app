@@ -136,10 +136,15 @@ window.addEventListener('load', () => {
   );
 
   // Todo Start Timer event handler
-  startTimerBtn.addEventListener('click', async function () {
-    this.innerText = 'Restart';
-    await startOrRestart();
-  });
+  startTimerBtn.addEventListener(
+    'click',
+    async function () {
+      clearInterval(timerId);
+      this.classList.add('disabled');
+      await startOrRestart();
+    },
+    { once: true }
+  );
 
   // Todo Restart Game event handler
   restartBtn.addEventListener('click', startOrRestart);

@@ -69,25 +69,25 @@ body {
 
 //#region gallary container
 #gallaryContainer {
-  $colectionLength: css-min(#{ calc(100vh - calc(15vh + 25vh)) }, #{ calc(100vw - 2 * 1rem) });
+  $collectionLength: css-min(#{ calc(100vh - calc(15vh + 25vh)) }, #{ calc(100vw - 2 * 1rem) });
   ;
-  $colectionBorder: 4px;
+  $collectionBorder: 4px;
   $gap: 1rem;
   row-gap: $gap;
   column-gap: $gap;
   $border-raduis: 1em;
   border-radius: $border-raduis;
 
-  #colection {
-    width: $colectionLength;
-    height: $colectionLength;
-    border: $colectionBorder solid transparent;
+  #collection {
+    width: $collectionLength;
+    height: $collectionLength;
+    border: $collectionBorder solid transparent;
     position: relative;
     transition: all ease-in-out 0.3s;
 
     &:hover {
       box-shadow: 0px 8px 12px 2px rgb(0 0 0 / 32%);
-      border: $colectionBorder solid $orange-red;
+      border: $collectionBorder solid $orange-red;
       transform: scale(1.009);
 
       img {
@@ -96,7 +96,7 @@ body {
     }
 
     &>div {
-      width: calc(($colectionLength - 2 * $colectionBorder ) / 2);
+      width: calc(($collectionLength - 2 * $collectionBorder ) / 2);
       border: 2px solid $jungle-green;
 
       img {
