@@ -6,7 +6,7 @@
 
 **Description:**
 
-The app use API for generate game board and its solutions.
+TThe app uses API to generate game board and their solutions.
 
 For 4x4 sudoku game I use
 
